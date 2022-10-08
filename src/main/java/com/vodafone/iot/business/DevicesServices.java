@@ -2,6 +2,8 @@ package com.vodafone.iot.business;
 
 import com.vodafone.iot.data.Devices;
 import com.vodafone.iot.data.DevicesRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.StyledEditorKit;
@@ -31,16 +33,21 @@ public class DevicesServices {
         return devices;
     }
 
-    public Boolean UpdateStatus(String Status,Long Id){
+    public
+    ResponseEntity
+            <org.springframework.http.HttpStatus> UpdateStatus(String Status,Long Id){
         Optional<Devices> devices = this.devicesRepository.findById(Id);
         devices.get().setSTATUS(Status);
         this.devicesRepository.save(devices.get());
-        return Boolean.TRUE;
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    public Boolean removeDevice(Long ID){
+    public
+    ResponseEntity
+            <org.springframework.http.HttpStatus> removeDevice(Long ID){
+        System.out.println(ID);
         this.devicesRepository.deleteById(ID);
-        return true;
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
 }
