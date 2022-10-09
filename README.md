@@ -16,6 +16,13 @@ a. Returns all devices in the warehouse that are waiting for activation.
 `curl --location --request GET 'localhost:8080/api/devices?status=Waiting'`
 
 b. Management endpoints that enable the shop manager to remove or update a device configuration status.
+* delete
+  `curl --location --request DELETE 'localhost:8080/api/devices/delete' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "id":"1312327"
+  }'`
+* Update
 `curl --location --request PUT 'localhost:8080/api/devices/update' \
 --header 'Content-Type: application/json' \
 --data-raw '{
